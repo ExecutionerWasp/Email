@@ -1,30 +1,27 @@
 <template>
+    <v-card>
+        <v-card-title>
+            <h3>From : {{this.$store.state.user.email}}</h3>
+            <h3>To : {{this.to}}</h3>
+        </v-card-title>
+        <v-divider></v-divider>
 
-        <v-card>
-            <v-card-title>
-                <h3>From : {{this.$store.state.user.email}}</h3>
-                <h3>To : {{this.to}}</h3>
-            </v-card-title>
-            <v-divider></v-divider>
+        <v-card-text>
+            <v-text-field v-model="title" placeholder="Title"></v-text-field>
+            <v-textarea v-model="content" placeholder="Message"></v-textarea>
+        </v-card-text>
 
-            <v-card-text>
-                <v-text-field v-model="title" placeholder="Title"></v-text-field>
-                <v-textarea v-model="content" placeholder="Message">
-
-                </v-textarea>
-            </v-card-text>
-
-            <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn
-                        color="primary"
-                        text
-                        @click="onSend()"
-                >
-                    Send quick message
-                </v-btn>
-            </v-card-actions>
-        </v-card>
+        <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+                    color="primary"
+                    text
+                    @click="onSend()"
+            >
+                Send quick message
+            </v-btn>
+        </v-card-actions>
+    </v-card>
 </template>
 
 <script>
@@ -36,7 +33,7 @@
             return {
                 title: '',
                 content: '',
-                dialog : true
+                dialog: true
             }
         },
 

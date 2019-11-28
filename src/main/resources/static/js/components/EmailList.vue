@@ -6,7 +6,7 @@
                 <v-divider class="mb-3"></v-divider>
                 <h3>From : {{item.from}}</h3>
                 <h3>To :
-                    <v-btn class="quickMessageTo" color="#616161" @click="onSend(item.to)">{{item.to}}</v-btn>
+                    <v-btn class="quickMessageTo" color="#616161" @click="onTrigger(item.to)">{{item.to}}</v-btn>
                 </h3>
                 <v-divider class="mb-3 mt-3"></v-divider>
                 <p class="pt-3 pb-3">Content : {{item.content}}</p>
@@ -16,7 +16,7 @@
                 <!--                <p class="pl-5 pb-5">Status : {{item.status}}</p>-->
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn  class="delete-btn mb-5" color="#5C6BC0" @click="deleteEmail(item.id)">Delete</v-btn>
+                    <v-btn class="delete-btn mb-5" color="#5C6BC0" @click="deleteEmail(item.id)">Delete</v-btn>
                 </v-card-actions>
             </v-card>
         </v-card>
@@ -24,20 +24,40 @@
                 v-model="dialog"
                 width="500"
         >
-            <quick-email :to="this.to" :dialog="dialog"></quick-email>
+            <v-card>
+                <v-card-title>
+                    <h3>From : {{this.$store.state.user.email}}</h3>
+                    <h3>To : {{this.to}}</h3>
+                </v-card-title>
+                <v-divider></v-divider>
+                <v-card-text>
+                    <v-text-field v-model="title" placeholder="Title"></v-text-field>
+                    <v-textarea v-model="content" placeholder="Message"></v-textarea>
+                </v-card-text>
+
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                            color="primary"
+                            text
+                            @click="onSend()"
+                    >
+                        Send quick message
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
         </v-dialog>
     </v-container>
 </template>
 <script>
-    import QuickEmail from "./QuickEmail.vue";
 
     export default {
-        name: "EmailList",
-        components: {QuickEmail},
-        data() {
+        name: "EmailList", data() {
             return {
                 dialog: false,
-                to: ''
+                to: '',
+                title: '',
+                content: '',
             }
         },
 
@@ -68,10 +88,21 @@
                 this.$store.dispatch("deleteMessage", id);
             },
 
-            onSend(email) {
-                this.to = email;
+            onTrigger(email) {
                 this.dialog = true;
-            }
+                this.to = email;
+            },
+
+            onSend() {
+                this.$store.dispatch("sendMessage",
+                    {
+                        from: this.$store.state.user.email,
+                        to: this.to,
+                        title: this.title,
+                        content: this.content
+                    });
+                this.dialog = false;
+            },
         }
     }
 </script>
