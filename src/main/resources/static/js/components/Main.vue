@@ -38,7 +38,7 @@
 
         methods: {
             onSend() {
-                return this.$store.dispatch("sandMessage", this.message);
+                return this.$store.dispatch("sendMessage", this.message);
             }
         }
     }

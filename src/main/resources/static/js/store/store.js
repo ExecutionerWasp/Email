@@ -40,7 +40,7 @@ export default new Vuex.Store({
     },
 
     actions: {
-        sandMessage({commit}, message) {
+        sendMessage({commit}, message) {
             return axios
                 .post(
                     "/email/sand"
