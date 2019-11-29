@@ -7,6 +7,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Log4j2
@@ -37,24 +38,30 @@ public class EmailController {
         return ResponseEntity.ok(emailService.send(e));
     }
 
-    @GetMapping("/sandedFrom/{from}")
-    public List<Email> all(@PathVariable String from) {
+    @GetMapping("/sandedFrom")
+    public List<Email> all(@RequestParam String from) {
         log.info("/sanded");
         log.info("? from = " + from);
+        log.info(emailService.findByFrom(from));
         return emailService.findByFrom(from);
     }
 
-    @GetMapping("/sandedTo/{to}")
-    public List<Email> allTo(@PathVariable String to) {
+    @GetMapping("/sandedTo")
+    public List<Email> allTo(@RequestParam String to) {
         log.info("/sandedTo");
         log.info("to : " + to);
         return emailService.findByTo(to);
     }
 
-    @PostMapping("/delete/{id}")
-    public ResponseEntity<Email> delete(@PathVariable long id) {
-        log.info("/delete");
-        log.info("id : " + id);
+    @GetMapping("/addresses")
+    public List<String> addresses(){
+        log.info("/addresses");
+        return new ArrayList<>(emailService.findAllEmailAddresses());
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<Email> delete(@RequestParam long id) {
+        log.info("/delete?id=" + id);
         return ResponseEntity.ok(emailService.deleteById(id));
     }
 }

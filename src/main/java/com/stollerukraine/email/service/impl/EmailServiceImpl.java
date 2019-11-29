@@ -13,10 +13,8 @@ import org.springframework.stereotype.Service;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
-import java.util.Properties;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Log4j2
 @Service
@@ -37,6 +35,13 @@ public class EmailServiceImpl implements EmailService {
         email.setStatus(EmailStatus.SANDED);
         log.info("Saving email : " + email);
         return emailRepository.save(email);
+    }
+
+    @Override
+    public HashSet<String> findAllEmailAddresses() {
+        log.info("Finding all addresses");
+        List<Email> all = emailRepository.findAll();
+        return (HashSet<String>) all.stream().map(Email::getTo).collect(Collectors.toSet());
     }
 
     @Override

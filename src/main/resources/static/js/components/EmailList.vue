@@ -2,14 +2,16 @@
     <v-container>
         <v-card color="success">
             <v-card v-for="item in messages" class="mt-3 pl-5 pr-5">
-                <v-card-title><h1>Title : {{item.title}}</h1></v-card-title>
+                <v-card-title class="color">
+                    <h1>Title : {{item.title}}</h1>
+                </v-card-title>
                 <v-divider class="mb-3"></v-divider>
                 <h3>From : {{item.from}}</h3>
                 <h3>To :
                     <v-btn class="quickMessageTo" color="#616161" @click="onTrigger(item.to)">{{item.to}}</v-btn>
                 </h3>
                 <v-divider class="mb-3 mt-3"></v-divider>
-                <p class="pt-3 pb-3">Content : {{item.content}}</p>
+                <pre class="pt-3 pb-3" v-html="item.content"></pre>
                 <v-divider></v-divider>
                 <p class="pt-5">{{getDate(item.sendingDate)}}</p>
                 <p class="">{{getTime(item.sendingDate)}}</p>
@@ -26,7 +28,7 @@
         >
             <v-card>
                 <v-card-title>
-                    <h3>From : {{this.$store.state.user.email}}</h3>
+                    <h3>From : {{this.$store.getters.USER_EMAIL}}</h3>
                     <h3>To : {{this.to}}</h3>
                 </v-card-title>
                 <v-divider></v-divider>
@@ -52,7 +54,9 @@
 <script>
 
     export default {
-        name: "EmailList", data() {
+        name: "EmailList",
+
+        data() {
             return {
                 dialog: false,
                 to: '',
@@ -62,12 +66,12 @@
         },
 
         created() {
-            this.$store.dispatch("sandedMessagesFrom", this.$store.state.user.email);
+            this.$store.dispatch("sandedMessagesFrom", this.$store.getters.USER_EMAIL);
         },
 
         computed: {
             messages() {
-                return this.$store.state.sandedMessages;
+                return this.$store.getters.SANDED_MESSAGES;
             }
         },
 
@@ -96,7 +100,7 @@
             onSend() {
                 this.$store.dispatch("sendMessage",
                     {
-                        from: this.$store.state.user.email,
+                        from: this.$store.getters.USER_EMAIL,
                         to: this.to,
                         title: this.title,
                         content: this.content
@@ -108,6 +112,11 @@
 </script>
 
 <style scoped>
+
+    .color {
+        color: #ffa900;
+    }
+
     .delete-btn {
         min-width: 300px;
     }

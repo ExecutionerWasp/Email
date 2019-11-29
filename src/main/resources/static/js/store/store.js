@@ -9,9 +9,30 @@ export default new Vuex.Store({
         user: {
             email : 'y.kulpin@stollerukraine.com',
         },
+
         sendingMessage: null,
+        deletedMessage: null,
+
         sandedMessages: [],
-        deletedMessage: null
+        emailAddresses: []
+    },
+
+    getters : {
+        USER : state => {
+            return state.user
+        },
+
+        USER_EMAIL : state => {
+            return state.user.email
+        },
+
+        SANDED_MESSAGES : state =>  {
+          return state.sandedMessages
+        },
+
+        EMAIL_ADDRESSES : state => {
+            return state.emailAddresses
+        }
     },
 
     mutations: {
@@ -25,6 +46,10 @@ export default new Vuex.Store({
 
         sandedMessagesTo(state, messages) {
             state.sandedMessages = messages;
+        },
+
+        allEmailAddresses(state, addresses){
+            state.emailAddresses = addresses;
         },
 
         deleteMessage(state, message) {
@@ -42,30 +67,31 @@ export default new Vuex.Store({
     actions: {
         sendMessage({commit}, message) {
             return axios
-                .post(
-                    "/email/sand"
-                    + "?from=" + message.from
-                    + "&to=" + message.to
-                    + "&title=" + message.title
-                    + "&content=" + encodeURI(message.content))
+                .post(`/email/sand?from=${message.from}&to=${message.to}&title=${message.title}&content=${encodeURI(message.content)}`)
                 .then(responseMessage => commit("sendMessage", responseMessage));
         },
 
         sandedMessagesFrom({commit}, email) {
             return axios
-                .get("/email/sandedFrom/" + email)
+                .get(`/email/sandedFrom?from=${email}`)
                 .then(messages => commit("sandedMessagesFrom", messages.data));
         },
 
         sandedMessagesTo({commit}, email) {
             return axios
-                .get("/email/sandedMessagesTo/" + email)
+                .get(`/email/sandedMessagesTo?to=${email}`)
                 .then(messages => commit("sandedMessagesTo", messages.data));
+        },
+
+        emailAddresses({commit}, email) {
+            return axios
+                .get("/email/addresses")
+                .then(addresses => commit("emailAddresses", addresses.data));
         },
 
         deleteMessage({commit}, id) {
             return axios
-                .post("/email/delete/" + id)
+                .delete(`/email/delete?id=${id}`)
                 .then(message => commit("deleteMessage", message.data.id));
         }
     }

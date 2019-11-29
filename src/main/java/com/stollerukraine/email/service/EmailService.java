@@ -1,14 +1,17 @@
 package com.stollerukraine.email.service;
 
-import com.stollerukraine.email.domain.EmailStatus;
 import com.stollerukraine.email.domain.Email;
+import com.stollerukraine.email.domain.EmailStatus;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 public interface EmailService {
 
     Email save(Email email);
+
+    HashSet<String> findAllEmailAddresses();
 
     Email findById(long id);
 
