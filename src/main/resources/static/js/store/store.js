@@ -36,26 +36,26 @@ export default new Vuex.Store({
     },
 
     mutations: {
-        sendMessage(state, message) {
-            state.sendingMessage = message;
+        sendMessage(state, payload) {
+            state.sendingMessage = payload;
         },
 
-        sandedMessagesFrom(state, messages) {
-            state.sandedMessages = messages;
+        sandedMessagesFrom(state, payload) {
+            state.sandedMessages = payload;
         },
 
-        sandedMessagesTo(state, messages) {
-            state.sandedMessages = messages;
+        sandedMessagesTo(state, payload) {
+            state.sandedMessages = payload;
         },
 
-        allEmailAddresses(state, addresses){
-            state.emailAddresses = addresses;
+        allEmailAddresses(state, payload){
+            state.emailAddresses = payload;
         },
 
-        deleteMessage(state, message) {
+        deleteMessage(state, payload) {
             if (state.sandedMessages !== null) {
                 state.sandedMessages.forEach(m => {
-                    if (m.id === message) {
+                    if (m.id === payload) {
                         state.sandedMessages.splice(state.sandedMessages.indexOf(m), 1);
                         state.deletedMessage = m;
                     }
@@ -65,33 +65,33 @@ export default new Vuex.Store({
     },
 
     actions: {
-        sendMessage({commit}, message) {
+        sendMessage({commit}, payload) {
             return axios
-                .post(`/email/sand?from=${message.from}&to=${message.to}&title=${message.title}&content=${encodeURI(message.content)}`)
+                .post(`/email/sand?from=${payload.from}&to=${payload.to}&title=${payload.title}&content=${encodeURI(payload.content)}`)
                 .then(responseMessage => commit("sendMessage", responseMessage));
         },
 
-        sandedMessagesFrom({commit}, email) {
+        sandedMessagesFrom({commit}, payload) {
             return axios
-                .get(`/email/sandedFrom?from=${email}`)
+                .get(`/email/sandedFrom?from=${payload}`)
                 .then(messages => commit("sandedMessagesFrom", messages.data));
         },
 
-        sandedMessagesTo({commit}, email) {
+        sandedMessagesTo({commit}, payload) {
             return axios
-                .get(`/email/sandedMessagesTo?to=${email}`)
+                .get(`/email/sandedMessagesTo?to=${payload}`)
                 .then(messages => commit("sandedMessagesTo", messages.data));
         },
 
-        emailAddresses({commit}, email) {
+        emailAddresses({commit}, payload) {
             return axios
                 .get("/email/addresses")
                 .then(addresses => commit("emailAddresses", addresses.data));
         },
 
-        deleteMessage({commit}, id) {
+        deleteMessage({commit}, payload) {
             return axios
-                .delete(`/email/delete?id=${id}`)
+                .delete(`/email/delete?id=${payload}`)
                 .then(message => commit("deleteMessage", message.data.id));
         }
     }

@@ -731,4 +731,100 @@ q34
 wt
 r, sendingDate=2019-11-29 14:30:58.602, from=y.kulpin@stollerukraine.com, to=y.kulpin@stollerukraine.com, status=SANDED)]
 ""2019-11-29 14:31:08 - Searching emails from : y.kulpin@stollerukraine.com
+""2019-11-29 15:24:25 - Starting EmailApplication on stuakbwks11 with PID 10124 (C:\Projects\target\classes started by y.kulpin in C:\Projects)
+""2019-11-29 15:24:25 - The following profiles are active: dev
+""2019-11-29 15:24:25 - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@7857fe2: startup date [Fri Nov 29 15:24:25 EET 2019]; root of context hierarchy
+""2019-11-29 15:24:26 - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$2e458d21] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+""2019-11-29 15:24:27 - Tomcat initialized with port(s): 8025 (http)
+""2019-11-29 15:24:27 - Starting service [Tomcat]
+""2019-11-29 15:24:27 - Starting Servlet Engine: Apache Tomcat/8.5.34
+""2019-11-29 15:24:27 - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk-13\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Users\y.kulpin\AppData\Local\Microsoft\WindowsApps;C:\Users\y.kulpin\AppData\Local\Programs\Git\cmd;C:\Users\y.kulpin\AppData\Local\JetBrains\WebStorm 2019.2.1\bin;C:\Users\y.kulpin\AppData\Local\JetBrains\IntelliJ IDEA 2019.2.1\bin;C:\Users\y.kulpin\AppData\Local\JetBrains\PhpStorm 2019.2.1\bin;C:\Users\y.kulpin\AppData\Local\GitHubDesktop\bin;C:\Users\y.kulpin\AppData\Local\JetBrains\PhpStorm 2019.2.2\bin;;P:\JetBrains\IntelliJ IDEA\bin;;.]
+""2019-11-29 15:24:27 - Initializing Spring embedded WebApplicationContext
+""2019-11-29 15:24:27 - Root WebApplicationContext: initialization completed in 1452 ms
+""2019-11-29 15:24:27 - Servlet dispatcherServlet mapped to [/]
+""2019-11-29 15:24:27 - Servlet webServlet mapped to [/h2/*]
+""2019-11-29 15:24:27 - Mapping filter: 'characterEncodingFilter' to: [/*]
+""2019-11-29 15:24:27 - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+""2019-11-29 15:24:27 - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+""2019-11-29 15:24:27 - Mapping filter: 'requestContextFilter' to: [/*]
+""2019-11-29 15:24:27 - HikariPool-1 - Starting...
+""2019-11-29 15:24:27 - HikariPool-1 - Start completed.
+""2019-11-29 15:24:27 - Building JPA container EntityManagerFactory for persistence unit 'default'
+""2019-11-29 15:24:27 - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+""2019-11-29 15:24:27 - HHH000412: Hibernate Core {5.2.17.Final}
+""2019-11-29 15:24:27 - HHH000206: hibernate.properties not found
+""2019-11-29 15:24:27 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+""2019-11-29 15:24:27 - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+""2019-11-29 15:24:28 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+""2019-11-29 15:24:28 - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+""2019-11-29 15:24:28 - Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@7857fe2: startup date [Fri Nov 29 15:24:25 EET 2019]; root of context hierarchy
+""2019-11-29 15:24:29 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+""2019-11-29 15:24:29 - Mapped "{[/email/delete],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity<com.stollerukraine.email.domain.Email> com.stollerukraine.email.controller.EmailController.delete(long)
+""2019-11-29 15:24:29 - Mapped "{[/email/sandedFrom],methods=[GET]}" onto public java.util.List<com.stollerukraine.email.domain.Email> com.stollerukraine.email.controller.EmailController.all(java.lang.String)
+""2019-11-29 15:24:29 - Mapped "{[/email/addresses],methods=[GET]}" onto public java.util.List<java.lang.String> com.stollerukraine.email.controller.EmailController.addresses()
+""2019-11-29 15:24:29 - Mapped "{[/email/sand],methods=[POST]}" onto public org.springframework.http.ResponseEntity<com.stollerukraine.email.domain.Email> com.stollerukraine.email.controller.EmailController.send(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+""2019-11-29 15:24:29 - Mapped "{[/email/sandedTo],methods=[GET]}" onto public java.util.List<com.stollerukraine.email.domain.Email> com.stollerukraine.email.controller.EmailController.allTo(java.lang.String)
+""2019-11-29 15:24:29 - Mapped "{[/email],methods=[GET]}" onto public java.lang.String com.stollerukraine.email.controller.MainController.main(org.springframework.ui.Model)
+""2019-11-29 15:24:29 - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+""2019-11-29 15:24:29 - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+""2019-11-29 15:24:29 - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+""2019-11-29 15:24:29 - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+""2019-11-29 15:24:29 - Adding welcome page template: index
+""2019-11-29 15:24:29 - Registering beans for JMX exposure on startup
+""2019-11-29 15:24:29 - Bean with name 'dataSource' has been autodetected for JMX exposure
+""2019-11-29 15:24:29 - Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+""2019-11-29 15:24:29 - Tomcat started on port(s): 8025 (http) with context path ''
+""2019-11-29 15:24:29 - Started EmailApplication in 4.197 seconds (JVM running for 5.24)
+""2019-11-29 15:24:40 - Initializing Spring FrameworkServlet 'dispatcherServlet'
+""2019-11-29 15:24:40 - FrameworkServlet 'dispatcherServlet': initialization started
+""2019-11-29 15:24:40 - FrameworkServlet 'dispatcherServlet': initialization completed in 21 ms
+""2019-11-29 15:25:38 - /sanded
+""2019-11-29 15:25:38 - ? from = y.kulpin@stollerukraine.com
+""2019-11-29 15:25:38 - Searching emails from : y.kulpin@stollerukraine.com
+""2019-11-29 15:25:38 - HHH000397: Using ASTQueryTranslatorFactory
+""2019-11-29 15:25:39 - [Email(id=225, title=ads, content=sadf, sendingDate=2019-11-29 11:58:47.66, from=y.kulpin@stollerukraine.com, to=y.kulpin@stollerukraine.com, status=SANDED), Email(id=226, title=13, content=awedasdaga
+sf
+sdg
+z\s
+h
+swhre`1, sendingDate=2019-11-29 11:59:12.561, from=y.kulpin@stollerukraine.com, to=y.kulpin@stollerukraine.com, status=SANDED), Email(id=227, title=asd, content=asd, sendingDate=2019-11-29 11:59:59.191, from=y.kulpin@stollerukraine.com, to=y.kulpin@stollerukraine.com, status=SANDED), Email(id=257, title=sadasd, content=asd
+asd
+asd
+a
+s
+as
+d
+as
+das
+d
+asd
+a
+ds
+afa
+sf
+sa
+ge
+w
+egwe
+r
+2
+3r
+w
+rge
+awh
+
+ea
+j
+je5
+
+a5j
+
+q453u
+q
+q34
+wt
+r, sendingDate=2019-11-29 14:30:58.602, from=y.kulpin@stollerukraine.com, to=y.kulpin@stollerukraine.com, status=SANDED)]
+""2019-11-29 15:25:39 - Searching emails from : y.kulpin@stollerukraine.com
 "
